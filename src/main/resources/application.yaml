@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ecommerce
+
+  datasource:
+    url: jdbc:postgresql://localhost:9091/ecommerce
+    username: ecommerce
+    password: 123
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+  logging:
+    level:
+      org.flywaydb: DEBUG
+
