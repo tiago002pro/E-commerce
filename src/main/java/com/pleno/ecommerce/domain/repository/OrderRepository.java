@@ -5,7 +5,7 @@ import com.pleno.ecommerce.domain.model.Order;
 import java.util.List;
 
 public interface OrderRepository {
-    Order create(Order request);
+    Order save(Order request);
 
     List<Order> getAll();
 }

@@ -1,7 +1,9 @@
 package com.pleno.ecommerce.application.web.order;
 
+import com.pleno.ecommerce.application.dto.request.NewOrderRequest;
 import com.pleno.ecommerce.application.service.OrderService;
 import com.pleno.ecommerce.domain.model.Order;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,8 +17,8 @@ public class OrderController implements OrderApi {
     private final OrderService orderService;
 
     @Override
-    public ResponseEntity<Order> create(Order request) {
-        return ResponseEntity.ok(orderService.create(request));
+    public ResponseEntity<Order> newOrder(@Valid NewOrderRequest request) {
+        return ResponseEntity.ok(orderService.newOrder(request));
     }
 
     @Override

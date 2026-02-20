@@ -30,4 +30,10 @@ public class Order {
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
     List<Product> items;
+
+    public Order(String customerEmail, BigDecimal totalAmount, List<Product> items) {
+        this.customerEmail = customerEmail;
+        this.totalAmount = totalAmount;
+        this.items = items;
+    }
 }

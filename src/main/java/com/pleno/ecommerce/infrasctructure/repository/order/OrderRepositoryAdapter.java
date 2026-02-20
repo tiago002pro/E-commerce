@@ -14,7 +14,7 @@ public class OrderRepositoryAdapter implements OrderRepository {
     private final OrderJPARepository orderJPARepository;
 
     @Override
-    public Order create(Order request) {
+    public Order save(Order request) {
         return orderJPARepository.save(request);
     }
 
