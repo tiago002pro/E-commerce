@@ -13,14 +13,14 @@ import java.util.UUID;
 public class Order {
 
     @Id
-    @GeneratedValue
-    @Column(columnDefinition = "uuid", updatable = false)
-    UUID uid;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
 
     @Column(name = "customer_email")
     String customerEmail;
 
-    @Column(name = "total_amount")
+    @Column(name = "total_amount", precision = 10, scale = 2)
     BigDecimal totalAmount;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})

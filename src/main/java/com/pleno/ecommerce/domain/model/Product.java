@@ -12,13 +12,13 @@ import java.util.UUID;
 public class Product {
 
     @Id
-    @GeneratedValue
-    @Column(columnDefinition = "uuid", updatable = false)
-    UUID uid;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
 
     @Column(name = "name")
     String name;
 
-    @Column(name = "amount")
+    @Column(name = "amount", precision = 10, scale = 2)
     BigDecimal amount;
 }
