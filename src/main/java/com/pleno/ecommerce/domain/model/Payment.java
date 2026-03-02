@@ -1,14 +1,17 @@
 package com.pleno.ecommerce.domain.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Data
 @Table(name = "tb_payment")
 public class Payment {
 

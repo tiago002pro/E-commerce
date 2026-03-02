@@ -1,17 +1,16 @@
 package com.pleno.ecommerce.domain.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
-@Entity
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Entity
 @Table(name = "tb_product")
 public class Product {
 
@@ -21,8 +20,8 @@ public class Product {
     private UUID id;
 
     @Column(name = "name")
-    String name;
+    private String name;
 
     @Column(name = "amount", precision = 10, scale = 2)
-    BigDecimal amount;
+    private BigDecimal amount;
 }

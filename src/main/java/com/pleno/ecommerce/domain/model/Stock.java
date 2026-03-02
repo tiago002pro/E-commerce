@@ -1,13 +1,15 @@
 package com.pleno.ecommerce.domain.model;
 
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import lombok.Data;
+import lombok.*;
 
 import java.util.UUID;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Data
 @Table(name = "tb_stock")
 public class Stock {
 

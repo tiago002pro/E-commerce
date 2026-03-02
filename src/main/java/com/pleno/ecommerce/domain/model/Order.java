@@ -1,14 +1,18 @@
 package com.pleno.ecommerce.domain.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Data
 @Table(name = "tb_order")
 public class Order {
 
@@ -18,22 +22,27 @@ public class Order {
     private UUID id;
 
     @Column(name = "customer_email")
-    String customerEmail;
+    private String customerEmail;
 
     @Column(name = "total_amount", precision = 10, scale = 2)
-    BigDecimal totalAmount;
+    private BigDecimal totalAmount;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            name = "tb_order_product",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    List<Product> items;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderItem> items = new ArrayList<>();
 
-    public Order(String customerEmail, BigDecimal totalAmount, List<Product> items) {
+    public Order(String customerEmail) {
         this.customerEmail = customerEmail;
-        this.totalAmount = totalAmount;
-        this.items = items;
+    }
+
+    public void addItem(OrderItem item) {
+        item.setOrder(this);
+        this.items.add(item);
+        recalculateTotal();
+    }
+
+    private void recalculateTotal() {
+        this.totalAmount = items.stream()
+                .map(OrderItem::getSubtotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }
