@@ -3,12 +3,13 @@ server:
 
 spring:
   application:
-    name: ecommerce
+    name: ecommerce-api
 
   datasource:
     url: jdbc:postgresql://localhost:9091/ecommerce
     username: ecommerce
     password: 123
+    driver-class-name: org.postgresql.Driver
 
   flyway:
     enabled: true
