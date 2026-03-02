@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
-import java.util.UUID;
 
 public record NewOrderRequest(
 
@@ -13,6 +12,6 @@ public record NewOrderRequest(
         @NotNull
         String customerEmail,
 
-        @NotEmpty(message = "A lista de produtos não pode estar vazia")
-        List<UUID> productsId
+        @NotEmpty(message = "A lista de itens não pode estar vazia")
+        List<NewOrderItemRequest> items
 ) {}
