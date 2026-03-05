@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -16,6 +18,11 @@ public class OrderRepositoryAdapter implements OrderRepository {
     @Override
     public Order save(Order request) {
         return orderJPARepository.save(request);
+    }
+
+    @Override
+    public Optional<Order> findById(UUID id) {
+        return orderJPARepository.findById(id);
     }
 
     @Override
