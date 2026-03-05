@@ -44,4 +44,15 @@ public class OrderItem {
         this.subtotal = subtotal;
         this.product = product;
     }
+
+    public static OrderItem create(Product product, Integer quantity) {
+        var subtotal = product.getAmount().multiply(BigDecimal.valueOf(quantity));
+
+        return new OrderItem(
+                quantity,
+                product.getAmount(),
+                subtotal,
+                product
+        );
+    }
 }

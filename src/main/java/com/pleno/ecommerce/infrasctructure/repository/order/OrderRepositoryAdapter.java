@@ -5,7 +5,6 @@ import com.pleno.ecommerce.domain.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -23,10 +22,5 @@ public class OrderRepositoryAdapter implements OrderRepository {
     @Override
     public Optional<Order> findById(UUID id) {
         return orderJPARepository.findById(id);
-    }
-
-    @Override
-    public List<Order> getAll() {
-        return orderJPARepository.findAll();
     }
 }
