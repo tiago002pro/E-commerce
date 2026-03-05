@@ -1,4 +1,4 @@
-package com.pleno.ecommerce.infrasctructure.repository.payment;
+package com.pleno.ecommerce.infrasctructure.persistence.payment;
 
 import com.pleno.ecommerce.domain.repository.PaymentRepository;
 import lombok.AllArgsConstructor;

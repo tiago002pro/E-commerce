@@ -1,4 +1,4 @@
-package com.pleno.ecommerce.application.web.payment;
+package com.pleno.ecommerce.infrasctructure.web.payment;
 
 import com.pleno.ecommerce.application.service.PaymentService;
 import lombok.AllArgsConstructor;

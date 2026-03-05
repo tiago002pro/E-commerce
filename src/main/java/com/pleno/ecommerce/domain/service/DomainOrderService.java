@@ -9,7 +9,7 @@ import com.pleno.ecommerce.domain.exception.EmptyOrderException;
 import com.pleno.ecommerce.domain.exception.NotFoundException;
 import com.pleno.ecommerce.domain.model.Email;
 import com.pleno.ecommerce.domain.model.Order;
-import com.pleno.ecommerce.domain.mapper.OrderMapper;
+import com.pleno.ecommerce.infrasctructure.mapper.OrderMapper;
 import com.pleno.ecommerce.domain.repository.OrderRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

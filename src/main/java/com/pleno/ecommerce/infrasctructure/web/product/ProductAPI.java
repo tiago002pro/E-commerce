@@ -1,4 +1,4 @@
-package com.pleno.ecommerce.application.web.product;
+package com.pleno.ecommerce.infrasctructure.web.product;
 
 import com.pleno.ecommerce.domain.model.Product;
 import org.springframework.http.MediaType;

@@ -1,4 +1,4 @@
-package com.pleno.ecommerce.application.web.stock;
+package com.pleno.ecommerce.infrasctructure.web.stock;
 
 import com.pleno.ecommerce.application.service.StockService;
 import lombok.AllArgsConstructor;

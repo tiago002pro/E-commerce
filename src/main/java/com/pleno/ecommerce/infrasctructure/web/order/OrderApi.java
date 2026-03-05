@@ -1,4 +1,4 @@
-package com.pleno.ecommerce.application.web.order;
+package com.pleno.ecommerce.infrasctructure.web.order;
 
 import com.pleno.ecommerce.application.dto.request.NewOrderItemRequest;
 import com.pleno.ecommerce.application.dto.request.NewOrderRequest;

@@ -1,4 +1,4 @@
-package com.pleno.ecommerce.infrasctructure.repository.stock;
+package com.pleno.ecommerce.infrasctructure.persistence.stock;
 
 import com.pleno.ecommerce.domain.model.Stock;
 import org.springframework.data.jpa.repository.JpaRepository;

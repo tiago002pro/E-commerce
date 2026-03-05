@@ -1,4 +1,4 @@
-package com.pleno.ecommerce.infrasctructure.repository.payment;
+package com.pleno.ecommerce.infrasctructure.persistence.payment;
 
 import com.pleno.ecommerce.domain.model.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;

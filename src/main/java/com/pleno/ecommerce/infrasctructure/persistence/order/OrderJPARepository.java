@@ -1,4 +1,4 @@
-package com.pleno.ecommerce.infrasctructure.repository.order;
+package com.pleno.ecommerce.infrasctructure.persistence.order;
 
 import com.pleno.ecommerce.domain.model.Order;
 import org.springframework.data.jpa.repository.JpaRepository;

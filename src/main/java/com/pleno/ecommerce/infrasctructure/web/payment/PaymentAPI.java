@@ -1,4 +1,4 @@
-package com.pleno.ecommerce.application.web.payment;
+package com.pleno.ecommerce.infrasctructure.web.payment;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
