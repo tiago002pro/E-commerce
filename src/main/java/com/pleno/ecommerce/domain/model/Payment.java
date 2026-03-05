@@ -20,9 +20,9 @@ public class Payment {
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
-    @OneToMany
-    @JoinColumn(name = "order_id", nullable = false)
-    private List<Order> orderList;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
+    private Order order;
 
     @Column(name = "amount")
     private BigDecimal amount;
