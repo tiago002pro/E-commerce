@@ -1,7 +1,7 @@
 package com.pleno.ecommerce.domain.service;
 
 import com.pleno.ecommerce.application.service.ProductService;
-import com.pleno.ecommerce.domain.exception.ProductNotFoundException;
+import com.pleno.ecommerce.domain.exception.NotFoundException;
 import com.pleno.ecommerce.domain.model.Product;
 import com.pleno.ecommerce.domain.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +28,6 @@ public class DomainProductService implements ProductService {
 
     @Override
     public Product findById(UUID id) {
-        return productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
+        return productRepository.findById(id).orElseThrow(() -> new NotFoundException("Produto", id));
     }
 }
