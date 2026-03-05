@@ -7,9 +7,9 @@ import com.pleno.ecommerce.application.service.OrderService;
 import com.pleno.ecommerce.application.service.ProductService;
 import com.pleno.ecommerce.domain.exception.EmptyOrderException;
 import com.pleno.ecommerce.domain.exception.NotFoundException;
+import com.pleno.ecommerce.domain.model.Email;
 import com.pleno.ecommerce.domain.model.Order;
-import com.pleno.ecommerce.domain.model.OrderItem;
-import com.pleno.ecommerce.domain.model.mapper.OrderMapper;
+import com.pleno.ecommerce.domain.mapper.OrderMapper;
 import com.pleno.ecommerce.domain.repository.OrderRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -37,12 +37,13 @@ public class DomainOrderService implements OrderService {
     public OrderResponse newOrder(NewOrderRequest request) {
         validateOrderItems(request.items());
 
-        var order = new Order(request.customerEmail());
+        var email = new Email(request.customerEmail());
+        var order = new Order(email);
 
-        request.items()
-                .stream()
-                .map(this::createOrderItem)
-                .forEach(order::addItem);
+        request.items().forEach(item -> {
+            var product = productService.findById(item.productId());
+            order.addItem(product, item.quantity());
+        });
 
         return orderMapper.toResponse(orderRepository.save(order));
     }
@@ -51,19 +52,14 @@ public class DomainOrderService implements OrderService {
     @Override
     public OrderResponse addItem(UUID id, NewOrderItemRequest itemRequest) {
         var order = findById(id);
-        var orderItem = createOrderItem(itemRequest);
+        var product = productService.findById(itemRequest.productId());
 
-        order.addItem(orderItem);
+        order.addItem(product, itemRequest.quantity());
 
         return orderMapper.toResponse(orderRepository.save(order));
     }
 
     private void validateOrderItems(List<NewOrderItemRequest> items) {
         if (items == null || items.isEmpty()) throw new EmptyOrderException();
-    }
-
-    private OrderItem createOrderItem(NewOrderItemRequest itemRequest) {
-        var product = productService.findById(itemRequest.productId());
-        return OrderItem.create(product, itemRequest.quantity());
     }
 }

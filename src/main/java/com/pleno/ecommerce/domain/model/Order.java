@@ -21,8 +21,8 @@ public class Order {
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
-    @Column(name = "customer_email")
-    private String customerEmail;
+    @Embedded
+    private Email customerEmail;
 
     @Column(name = "total_amount", precision = 10, scale = 2)
     private BigDecimal totalAmount;
@@ -30,13 +30,25 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> items = new ArrayList<>();
 
-    public Order(String customerEmail) {
+    public Order(Email customerEmail) {
         this.customerEmail = customerEmail;
     }
 
     public void addItem(OrderItem item) {
         item.setOrder(this);
         this.items.add(item);
+        recalculateTotal();
+    }
+
+    public void addItem(Product product, Integer quantity) {
+
+        var unitPrice = product.getAmount();
+        var subtotal = unitPrice.multiply(BigDecimal.valueOf(quantity));
+
+        var item = new OrderItem(this, product, quantity, unitPrice, subtotal);
+
+        items.add(item);
+
         recalculateTotal();
     }
 

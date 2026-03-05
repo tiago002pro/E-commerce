@@ -1,4 +1,4 @@
-package com.pleno.ecommerce.domain.model.mapper;
+package com.pleno.ecommerce.domain.mapper;
 
 import com.pleno.ecommerce.application.dto.response.OrderItemResponse;
 import com.pleno.ecommerce.domain.model.OrderItem;

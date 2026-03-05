@@ -38,21 +38,11 @@ public class OrderItem {
     @Column(name = "subtotal")
     private BigDecimal subtotal;
 
-    public OrderItem(Integer quantity, BigDecimal unitPrice, BigDecimal subtotal, Product product) {
+    public OrderItem(Order order, Product product, Integer quantity, BigDecimal unitPrice, BigDecimal subtotal) {
+        this.order = order;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
         this.subtotal = subtotal;
         this.product = product;
-    }
-
-    public static OrderItem create(Product product, Integer quantity) {
-        var subtotal = product.getAmount().multiply(BigDecimal.valueOf(quantity));
-
-        return new OrderItem(
-                quantity,
-                product.getAmount(),
-                subtotal,
-                product
-        );
     }
 }
