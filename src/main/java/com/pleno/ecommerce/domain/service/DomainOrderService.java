@@ -9,8 +9,10 @@ import com.pleno.ecommerce.domain.exception.EmptyOrderException;
 import com.pleno.ecommerce.domain.exception.NotFoundException;
 import com.pleno.ecommerce.domain.model.Email;
 import com.pleno.ecommerce.domain.model.Order;
+import com.pleno.ecommerce.infrasctructure.mapper.OrderEventMapper;
 import com.pleno.ecommerce.infrasctructure.mapper.OrderMapper;
 import com.pleno.ecommerce.domain.repository.OrderRepository;
+import com.pleno.ecommerce.infrasctructure.messaging.rabbitmq.producer.OrderProducer;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,8 @@ public class DomainOrderService implements OrderService {
     private final ProductService productService;
 
     private final OrderMapper orderMapper;
+    private final OrderEventMapper orderEventMapper;
+    private final OrderProducer orderProducer;
 
     @Override
     public Order findById(UUID id) {
@@ -44,6 +48,8 @@ public class DomainOrderService implements OrderService {
             var product = productService.findById(item.productId());
             order.addItem(product, item.quantity());
         });
+
+        orderProducer.send(orderEventMapper.toEvent(order));
 
         return orderMapper.toResponse(orderRepository.save(order));
     }
